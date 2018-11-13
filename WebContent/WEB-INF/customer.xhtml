@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+    	<h:outputStylesheet library="css" name="tablestyle.css" />
+    </h:head>
+    <h:body>
+    	
+    	<h1>Turkcell Müşteri Liste</h1>
+    	<h:form>
+    		<h:dataTable value="#{order.custList}" var="o"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    		>
+    		
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">İsim</f:facet>
+    				<!-- row record -->
+    				<h:inputText value="#{o.name}" size="10" rendered="#{o.edit}" />
+    				
+    				<h:outputText value="#{o.name}" rendered="#{not o.edit}" />
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">Soyisim</f:facet>
+    				<h:inputText value="#{o.surname}" size="10" rendered="#{o.edit}" />
+    				
+    				<h:outputText value="#{o.surname}" rendered="#{not o.edit}" />
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">TC Numara</f:facet>
+    				<h:inputText value="#{o.id}" size="10" rendered="#{o.edit}" />
+    				
+    				<h:outputText value="#{o.id}" rendered="#{not o.edit}" />
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">Adres</f:facet>
+    				<h:inputText value="#{o.adr}" size="10" rendered="#{o.edit}" />
+    				
+    				<h:outputText value="#{o.adr}" rendered="#{not o.edit}" />
+    			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">Action</f:facet>
+    				
+    				<h:commandLink value="Update" 
+                          	action="#{order.editCust(o)}" />
+     			</h:column>
+    			
+    			<h:column>
+    				<f:facet name="header">Action</f:facet>
+    				
+    				<h:commandLink value="Delete" 
+                          	action="#{order.deleteCust(o)}" />
+     			</h:column>
+    		</h:dataTable>
+    		
+    		<h:commandButton value="Save" action="#{order.saveCust}" />
+    		
+    		<h2>Yeni Kişi Ekle</h2>
+    		<table>
+    		<tr>
+    			<td>İsim :</td>
+    			<td><h:inputText size="10" value="#{order.n}" /></td>
+    		</tr>
+    		<tr>
+    			<td>Soyisim :</td>
+    			<td><h:inputText size="20" value="#{order.sn}" /></td>
+    		</tr>
+    		<tr>
+    			<td>TC :</td>
+    			<td><h:inputText size="5" value="#{order.s}" /></td>
+    		</tr>
+    		<tr>
+    			<td>Adres :</td>
+    			<td><h:inputText size="10" value="#{order.d}" /></td>
+    		</tr>
+    		</table>
+    		
+    		<h:commandButton value="Add" action="#{order.addCust}" />
+    
+        </h:form>
+    </h:body>
+</html>

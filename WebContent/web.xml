@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+        xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+	<display-name>DataTable</display-name>
+
+	<!-- Change to "Production" when you are ready to deploy -->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	
+	<filter>
+		<filter-name>LoginFilter</filter-name>
+		<filter-class>com.control.LoginFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>LoginFilter</filter-name>
+		<url-pattern>/secured/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Welcome page -->
+	<welcome-file-list>
+		<welcome-file>faces/login.xhtml</welcome-file>
+	</welcome-file-list>
+
+	<!-- JSF mapping -->
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<!-- Map these files with JSF -->
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.faces</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    <servlet-name>Hello</servlet-name>
+    <servlet-class>com.servlet.HelloServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Hello</servlet-name>
+    <url-pattern>/hello_servlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Deneme</servlet-name>
+    <servlet-class>com.servlet.DenemeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Deneme</servlet-name>
+    <url-pattern>/Deneme/*</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <servlet-name>Search</servlet-name>
+    <servlet-class>com.servlet.DummyServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Search</servlet-name>
+    <url-pattern>/Search/*</url-pattern>
+  </servlet-mapping>
+
+	 <resource-ref>
+	<description>datasource</description>
+	<res-ref-name>stable</res-ref-name>
+	<res-type>javax.sql.DataSource</res-type>
+	<res-auth>Container</res-auth>
+  </resource-ref>
+  
+  	<listener>
+        <listener-class>
+                com.sun.xml.ws.transport.http.servlet.WSServletContextListener
+        </listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>hello</servlet-name>
+        <servlet-class>
+        	com.sun.xml.ws.transport.http.servlet.WSServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hello</servlet-name>
+        <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>120</session-timeout>
+    </session-config>
+  		
+</web-app>
